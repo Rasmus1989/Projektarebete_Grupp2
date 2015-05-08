@@ -25,9 +25,26 @@ public class LoginFragment extends Fragment implements ValueEventListener
 {
 
 
+
+
     public LoginFragment() {
         // Required empty public constructor
     }
+
+
+
+    public void sendQuestion(){
+
+
+        EditText question = (EditText) getActivity().findViewById(R.id.question);
+
+        Constants.question = question.getText().toString();
+
+        Constants.myFirebaseRef.child(Constants.userName).child("Question").setValue(Constants.question);
+
+
+    }
+
 
 
     @Override
@@ -39,16 +56,23 @@ public class LoginFragment extends Fragment implements ValueEventListener
             //Click on loginButton
             @Override
             public void onClick(View v) {
+
+                sendQuestion();
+                Constants.myFirebaseRef.child(Constants.userName).child("Question").setValue(Constants.question);
+
+
                 //In firebase you read a value by adding a listener, then it will trigger once connected and on all changes.
                 //There is no readvalue as one could expect only listeners.
                 //Get the ScreenNbr child
-                Firebase  fireBaseEntryForScreenNbr = Constants.myFirebaseRef.child("ScreenNbr");
+                Firebase fireBaseEntryForScreenNbr = Constants.myFirebaseRef.child("ScreenNbr");
                 //Ok listen the changes will sho up in the method onDataChange
                 fireBaseEntryForScreenNbr.addValueEventListener(LoginFragment.this);
             }
         });
         return returnView;
     }
+
+
 
 
     @Override
@@ -59,7 +83,10 @@ public class LoginFragment extends Fragment implements ValueEventListener
             Log.i("LoginFragment", "Screen nbr entered: " + val + " Value from firebase: "+screenNbrFromFirebase);
             EditText screenNumber = (EditText) getActivity().findViewById(R.id.screenNumber);
             EditText name = (EditText) getActivity().findViewById(R.id.name);
+
             Constants.userName = name.getText().toString();
+
+
             //Are we on the right screen
             if (screenNbrFromFirebase.equals(screenNumber.getText().toString())){
                 Log.i("LoginFragment", "Logged in");

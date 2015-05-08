@@ -22,8 +22,7 @@
         android:text="Logon"
         android:id="@+id/btnLogon"
         android:layout_gravity="center_horizontal|bottom"
-        android:layout_marginTop="30dp"
-        android:layout_below="@+id/textView3"
+        android:layout_centerVertical="true"
         android:layout_alignStart="@+id/name" />
 
     <EditText
@@ -54,5 +53,24 @@
         android:layout_alignBottom="@+id/name"
         android:layout_alignParentStart="true"
         android:layout_marginLeft="16dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Question"
+        android:id="@+id/textView4"
+        android:layout_marginTop="28dp"
+        android:layout_below="@+id/textView3"
+        android:layout_alignStart="@+id/textView3" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/question"
+        android:layout_gravity="center_horizontal|top"
+        android:layout_alignBottom="@+id/textView4"
+        android:layout_alignStart="@+id/name" />
 
 </RelativeLayout>

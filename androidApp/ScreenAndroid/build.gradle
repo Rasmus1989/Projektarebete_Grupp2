@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "se.mah.k3.klarappo"
-        minSdkVersion 17
+        minSdkVersion 16
         targetSdkVersion 22
         versionCode 1
         versionName "1.0"

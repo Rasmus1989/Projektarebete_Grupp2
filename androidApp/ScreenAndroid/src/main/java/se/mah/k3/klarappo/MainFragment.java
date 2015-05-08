@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.firebase.client.DataSnapshot;
@@ -25,6 +26,7 @@ public class MainFragment extends Fragment implements View.OnClickListener, View
     int width;
     int height;
     private long roundTrip = 0;
+
     public MainFragment() {
     }
 
@@ -38,6 +40,7 @@ public class MainFragment extends Fragment implements View.OnClickListener, View
         width = size.x;
         height = size.y;
 
+
         //Add listeners for the touch events onTouch will be called when screen is touched.
         rootView.setOnTouchListener(this);
 
@@ -46,7 +49,9 @@ public class MainFragment extends Fragment implements View.OnClickListener, View
         v.setOnClickListener(this);
 
         //Create listeners for response time back so know when the token returns
-        String userName = Constants.userName;
+
+
+
         Firebase fireBaseEntryForMyID = Constants.myFirebaseRef.child(Constants.userName); //My part of the firebase
         Firebase fireBaseEntryForRoundBack =  fireBaseEntryForMyID.child("RoundTripBack"); //My roundtrip (Check firebase)
         //Listen for changes on "RoundTripBack" entry onDataChange will be called when "RoundTripBack" is changed
@@ -74,6 +79,8 @@ public class MainFragment extends Fragment implements View.OnClickListener, View
                 float yRel = event.getRawY()/height;//Compensate for menubar can probably be solved more beautiful test with getY to see the difference
                 Constants.myFirebaseRef.child(Constants.userName).child("xRel").setValue(xRel);  //Set the x Value
                 Constants.myFirebaseRef.child(Constants.userName).child("yRel").setValue(yRel);  //Set the y value
+                Constants.myFirebaseRef.child(Constants.userName).child("Question").setValue(Constants.question);
+
         }
         return true; //Ok we consumed the event and no-one can use it it is ours!
     }
@@ -93,5 +100,12 @@ public class MainFragment extends Fragment implements View.OnClickListener, View
     public void onCancelled(FirebaseError firebaseError) {
 
     }
+
+
+
+
+
+
+
 }
 
