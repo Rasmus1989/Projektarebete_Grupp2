@@ -3,4 +3,5 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="qTitleSize">84dp</dimen>
+    <dimen name="padding40">40dp</dimen>
 </resources>
