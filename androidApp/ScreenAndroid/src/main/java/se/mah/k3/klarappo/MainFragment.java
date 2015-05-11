@@ -17,9 +17,7 @@ import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
 
-/**
- * Created by K3LARA on 28/03/2015.
- */
+
 public class MainFragment extends Fragment implements View.OnClickListener, View.OnTouchListener, ValueEventListener{
     long lastTimeStamp = System.currentTimeMillis();
     long timeLastRound;
@@ -46,6 +44,11 @@ public class MainFragment extends Fragment implements View.OnClickListener, View
 
         //Add listeners to initiate a measure of roundtrip time onClick will be called.
         View v = rootView.findViewById(R.id.iv_refresh);
+        rootView.findViewById(R.id.buttonAlt1).setOnClickListener(this);
+        rootView.findViewById(R.id.buttonAlt2).setOnClickListener(this);
+        rootView.findViewById(R.id.buttonAlt3).setOnClickListener(this);
+        rootView.findViewById(R.id.buttonAlt4).setOnClickListener(this);
+
         v.setOnClickListener(this);
 
         //Create listeners for response time back so know when the token returns
@@ -68,6 +71,18 @@ public class MainFragment extends Fragment implements View.OnClickListener, View
              lastTimeStamp = System.currentTimeMillis();  //remember when we sent the token
              Constants.myFirebaseRef.child(Constants.userName).child("RoundTripTo").setValue(roundTrip);
          }
+         if (v.getId()==R.id.buttonAlt1){
+             Constants.myFirebaseRef.child(Constants.userName).child("Alternative1").child("Votes1").setValue(1);
+         }
+         if (v.getId()==R.id.buttonAlt2){
+             Constants.myFirebaseRef.child(Constants.userName).child("Alternative2").child("Votes2").setValue(12);
+         }
+         if (v.getId()==R.id.buttonAlt3){
+             Constants.myFirebaseRef.child(Constants.userName).child("Alternative3").child("Votes3").setValue(123);
+         }
+         if (v.getId()==R.id.buttonAlt4){
+             Constants.myFirebaseRef.child(Constants.userName).child("Alternative4").child("Votes4").setValue(1234);
+         }
     }
 
     //called if we move on the screen send the coordinates to fireBase
@@ -79,8 +94,6 @@ public class MainFragment extends Fragment implements View.OnClickListener, View
                 float yRel = event.getRawY()/height;//Compensate for menubar can probably be solved more beautiful test with getY to see the difference
                 Constants.myFirebaseRef.child(Constants.userName).child("xRel").setValue(xRel);  //Set the x Value
                 Constants.myFirebaseRef.child(Constants.userName).child("yRel").setValue(yRel);  //Set the y value
-                Constants.myFirebaseRef.child(Constants.userName).child("Question").setValue(Constants.question);
-
         }
         return true; //Ok we consumed the event and no-one can use it it is ours!
     }

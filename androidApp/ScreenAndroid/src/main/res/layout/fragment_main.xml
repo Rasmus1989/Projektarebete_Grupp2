@@ -47,7 +47,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="New Button"
-        android:id="@+id/button"
+        android:id="@+id/buttonAlt1"
         android:layout_below="@+id/iv_refresh"
         android:layout_alignLeft="@+id/textViewQuestion"
         android:layout_alignStart="@+id/textViewQuestion" />
@@ -56,28 +56,28 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="New Button"
-        android:id="@+id/button2"
-        android:layout_below="@+id/button"
-        android:layout_alignLeft="@+id/button"
-        android:layout_alignStart="@+id/button" />
+        android:id="@+id/buttonAlt2"
+        android:layout_below="@+id/buttonAlt1"
+        android:layout_alignLeft="@+id/buttonAlt1"
+        android:layout_alignStart="@+id/buttonAlt1" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="New Button"
-        android:id="@+id/button3"
-        android:layout_below="@+id/button2"
-        android:layout_alignRight="@+id/button2"
-        android:layout_alignEnd="@+id/button2" />
+        android:id="@+id/buttonAlt3"
+        android:layout_below="@+id/buttonAlt2"
+        android:layout_alignRight="@+id/buttonAlt2"
+        android:layout_alignEnd="@+id/buttonAlt2" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="New Button"
-        android:id="@+id/button4"
-        android:layout_below="@+id/button3"
-        android:layout_alignLeft="@+id/button3"
-        android:layout_alignStart="@+id/button3" />
+        android:id="@+id/buttonAlt4"
+        android:layout_below="@+id/buttonAlt3"
+        android:layout_alignLeft="@+id/buttonAlt3"
+        android:layout_alignStart="@+id/buttonAlt3" />
 
 
 </RelativeLayout>

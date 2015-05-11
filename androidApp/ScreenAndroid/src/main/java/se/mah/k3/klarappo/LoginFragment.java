@@ -17,6 +17,9 @@ import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
 
+import java.util.HashMap;
+import java.util.Map;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -39,7 +42,30 @@ public class LoginFragment extends Fragment implements ValueEventListener
         Constants.myFirebaseRef.child(Constants.userName).child("Question").setValue(Constants.question);
     }
 
+    public class Answer {
+        private int votes;
+        private String alternative;
+        public Answer() {}
+
+        public Answer(String alternative, int votes) {
+            this.alternative = alternative;
+            this.votes = votes;
+        }
+
+        public String getAlternative(){
+            return alternative;
+        }
+
+        public int getVotes(){
+            return votes;
+        }
+    }
+
+
     public void sendAlts(){
+        Firebase answerRef = Constants.myFirebaseRef.child(Constants.userName).child("answers");
+        Map<String, Answer> ourMap = new HashMap<String, Answer>();
+
         EditText alt1 = (EditText) getActivity().findViewById(R.id.editTextAlt1);
         EditText alt2 = (EditText) getActivity().findViewById(R.id.editTextAlt2);
         EditText alt3 = (EditText) getActivity().findViewById(R.id.editTextAlt3);
@@ -50,10 +76,18 @@ public class LoginFragment extends Fragment implements ValueEventListener
         Constants.alt3 = alt3.getText().toString();
         Constants.alt4 = alt4.getText().toString();
 
-        Constants.myFirebaseRef.child(Constants.userName).child("Alternative1").setValue(Constants.alt1);
-        Constants.myFirebaseRef.child(Constants.userName).child("Alternative2").setValue(Constants.alt2);
-        Constants.myFirebaseRef.child(Constants.userName).child("Alternative3").setValue(Constants.alt3);
-        Constants.myFirebaseRef.child(Constants.userName).child("Alternative4").setValue(Constants.alt4);
+        Answer one = new Answer(Constants.alt1, 0);
+        Answer two = new Answer(Constants.alt2, 0);
+        Answer three = new Answer(Constants.alt3, 0);
+        Answer four = new Answer(Constants.alt4, 0);
+
+        ourMap.put("one", one);
+        ourMap.put("two", two);
+        ourMap.put("three", three);
+        ourMap.put("four", four);
+
+        answerRef.setValue(ourMap);
+
     }
 
 
@@ -67,9 +101,6 @@ public class LoginFragment extends Fragment implements ValueEventListener
             //Click on loginButton
             @Override
             public void onClick(View v) {
-
-
-
 
                 //In firebase you read a value by adding a listener, then it will trigger once connected and on all changes.
                 //There is no readvalue as one could expect only listeners.
