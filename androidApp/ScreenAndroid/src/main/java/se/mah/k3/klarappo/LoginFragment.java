@@ -34,15 +34,26 @@ public class LoginFragment extends Fragment implements ValueEventListener
 
 
     public void sendQuestion(){
-
-
         EditText question = (EditText) getActivity().findViewById(R.id.question);
-
         Constants.question = question.getText().toString();
-
         Constants.myFirebaseRef.child(Constants.userName).child("Question").setValue(Constants.question);
+    }
 
+    public void sendAlts(){
+        EditText alt1 = (EditText) getActivity().findViewById(R.id.editTextAlt1);
+        EditText alt2 = (EditText) getActivity().findViewById(R.id.editTextAlt2);
+        EditText alt3 = (EditText) getActivity().findViewById(R.id.editTextAlt3);
+        EditText alt4 = (EditText) getActivity().findViewById(R.id.editTextAlt4);
 
+        Constants.alt1 = alt1.getText().toString();
+        Constants.alt2 = alt2.getText().toString();
+        Constants.alt3 = alt3.getText().toString();
+        Constants.alt4 = alt4.getText().toString();
+
+        Constants.myFirebaseRef.child(Constants.userName).child("Alternative1").setValue(Constants.alt1);
+        Constants.myFirebaseRef.child(Constants.userName).child("Alternative2").setValue(Constants.alt2);
+        Constants.myFirebaseRef.child(Constants.userName).child("Alternative3").setValue(Constants.alt3);
+        Constants.myFirebaseRef.child(Constants.userName).child("Alternative4").setValue(Constants.alt4);
     }
 
 
@@ -57,8 +68,7 @@ public class LoginFragment extends Fragment implements ValueEventListener
             @Override
             public void onClick(View v) {
 
-                sendQuestion();
-                Constants.myFirebaseRef.child(Constants.userName).child("Question").setValue(Constants.question);
+
 
 
                 //In firebase you read a value by adding a listener, then it will trigger once connected and on all changes.
@@ -90,6 +100,11 @@ public class LoginFragment extends Fragment implements ValueEventListener
             //Are we on the right screen
             if (screenNbrFromFirebase.equals(screenNumber.getText().toString())){
                 Log.i("LoginFragment", "Logged in");
+
+
+                sendQuestion();
+                sendAlts();
+
                 FragmentManager fm;
                 fm = getFragmentManager();
                 FragmentTransaction ft = fm.beginTransaction();
