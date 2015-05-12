@@ -63,7 +63,10 @@ public class LoginFragment extends Fragment implements ValueEventListener
 
 
     public void sendAlts(){
-        Firebase answerRef = Constants.myFirebaseRef.child(Constants.userName).child("answers");
+        //Firebase answerRef = Constants.myFirebaseRef.child(Constants.userName).child("answers");
+
+        Firebase answerRef = Constants.myFirebaseRef.child(Constants.userName);
+
         Map<String, Answer> ourMap = new HashMap<String, Answer>();
 
         EditText alt1 = (EditText) getActivity().findViewById(R.id.editTextAlt1);
