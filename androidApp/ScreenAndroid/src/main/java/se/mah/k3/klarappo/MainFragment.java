@@ -15,6 +15,8 @@ import android.widget.TextView;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
+import com.firebase.client.MutableData;
+import com.firebase.client.Transaction;
 import com.firebase.client.ValueEventListener;
 
 
@@ -63,6 +65,29 @@ public class MainFragment extends Fragment implements View.OnClickListener, View
     }
 
 
+    public void updateVote(String vote) {
+        Firebase upvotesRef = new Firebase("https://popping-torch-1741.firebaseio.com/"+Constants.userName+"/"+vote);
+
+        upvotesRef.runTransaction(new Transaction.Handler() {
+            @Override
+            public Transaction.Result doTransaction(MutableData currentData) {
+                if (currentData.getValue() == null) {
+                    currentData.setValue(1);
+                } else {
+                    currentData.setValue((Long) currentData.getValue() + 1);
+                }
+
+                return Transaction.success(currentData); //we can also abort by calling Transaction.abort()
+            }
+
+            @Override
+            public void onComplete(FirebaseError firebaseError, boolean committed, DataSnapshot currentData) {
+                //This method will be called once with the results of the transaction.
+            }
+        });
+    }
+
+
      //Start a new time measure of roundtrip time
      @Override
     public void onClick(View v) {
@@ -72,16 +97,16 @@ public class MainFragment extends Fragment implements View.OnClickListener, View
              Constants.myFirebaseRef.child(Constants.userName).child("RoundTripTo").setValue(roundTrip);
          }
          if (v.getId()==R.id.buttonAlt1){
-             Constants.myFirebaseRef.child(Constants.userName).child("Alternative1").child("Votes1").setValue(1);
+             updateVote("Vote1");
          }
          if (v.getId()==R.id.buttonAlt2){
-             Constants.myFirebaseRef.child(Constants.userName).child("Alternative2").child("Votes2").setValue(12);
+             updateVote("Vote2");
          }
          if (v.getId()==R.id.buttonAlt3){
-             Constants.myFirebaseRef.child(Constants.userName).child("Alternative3").child("Votes3").setValue(123);
+             updateVote("Vote3");
          }
          if (v.getId()==R.id.buttonAlt4){
-             Constants.myFirebaseRef.child(Constants.userName).child("Alternative4").child("Votes4").setValue(1234);
+             updateVote("Vote4");
          }
     }
 
@@ -94,6 +119,9 @@ public class MainFragment extends Fragment implements View.OnClickListener, View
                 float yRel = event.getRawY()/height;//Compensate for menubar can probably be solved more beautiful test with getY to see the difference
                 Constants.myFirebaseRef.child(Constants.userName).child("xRel").setValue(xRel);  //Set the x Value
                 Constants.myFirebaseRef.child(Constants.userName).child("yRel").setValue(yRel);  //Set the y value
+
+                Constants.myFirebaseRef.child(Constants.userName).child("Question").setValue(Constants.question);
+
         }
         return true; //Ok we consumed the event and no-one can use it it is ours!
     }

@@ -39,7 +39,10 @@ public class LoginFragment extends Fragment implements ValueEventListener
     public void sendQuestion(){
         EditText question = (EditText) getActivity().findViewById(R.id.question);
         Constants.question = question.getText().toString();
-        Constants.myFirebaseRef.child(Constants.userName).child("Question").setValue(Constants.question);
+        Log.d("LoginFragment", Constants.question);
+        Constants.checkmyFirebaseRef().child(Constants.userName).child("Question").setValue(Constants.question);
+
+        //Log.d("LoginFragment", String.valueOf(Constants.myFirebaseRef));
     }
 
     public class Answer {
@@ -65,7 +68,7 @@ public class LoginFragment extends Fragment implements ValueEventListener
     public void sendAlts(){
         //Firebase answerRef = Constants.myFirebaseRef.child(Constants.userName).child("answers");
 
-        Firebase answerRef = Constants.myFirebaseRef.child(Constants.userName);
+        Firebase answerRef = Constants.checkmyFirebaseRef().child(Constants.userName);
 
         Map<String, Answer> ourMap = new HashMap<String, Answer>();
 
@@ -90,7 +93,28 @@ public class LoginFragment extends Fragment implements ValueEventListener
         ourMap.put("four", four);
 
         answerRef.setValue(ourMap);
+    }
 
+    public void shittyFunction(){
+        EditText alt1 = (EditText) getActivity().findViewById(R.id.editTextAlt1);
+        EditText alt2 = (EditText) getActivity().findViewById(R.id.editTextAlt2);
+        EditText alt3 = (EditText) getActivity().findViewById(R.id.editTextAlt3);
+        EditText alt4 = (EditText) getActivity().findViewById(R.id.editTextAlt4);
+
+        Constants.alt1 = alt1.getText().toString();
+        Constants.alt2 = alt2.getText().toString();
+        Constants.alt3 = alt3.getText().toString();
+        Constants.alt4 = alt4.getText().toString();
+
+        Constants.checkmyFirebaseRef().child(Constants.userName).child("Alt1").setValue(Constants.alt1);
+        Constants.checkmyFirebaseRef().child(Constants.userName).child("Alt2").setValue(Constants.alt2);
+        Constants.checkmyFirebaseRef().child(Constants.userName).child("Alt3").setValue(Constants.alt3);
+        Constants.checkmyFirebaseRef().child(Constants.userName).child("Alt4").setValue(Constants.alt4);
+
+        Constants.checkmyFirebaseRef().child(Constants.userName).child("Vote1").setValue(0);
+        Constants.checkmyFirebaseRef().child(Constants.userName).child("Vote2").setValue(0);
+        Constants.checkmyFirebaseRef().child(Constants.userName).child("Vote3").setValue(0);
+        Constants.checkmyFirebaseRef().child(Constants.userName).child("Vote4").setValue(0);
     }
 
 
@@ -108,7 +132,7 @@ public class LoginFragment extends Fragment implements ValueEventListener
                 //In firebase you read a value by adding a listener, then it will trigger once connected and on all changes.
                 //There is no readvalue as one could expect only listeners.
                 //Get the ScreenNbr child
-                Firebase fireBaseEntryForScreenNbr = Constants.myFirebaseRef.child("ScreenNbr");
+                Firebase fireBaseEntryForScreenNbr = Constants.checkmyFirebaseRef().child("ScreenNbr");
                 //Ok listen the changes will sho up in the method onDataChange
                 fireBaseEntryForScreenNbr.addValueEventListener(LoginFragment.this);
             }
@@ -137,7 +161,8 @@ public class LoginFragment extends Fragment implements ValueEventListener
 
 
                 sendQuestion();
-                sendAlts();
+                //sendAlts();
+                shittyFunction();
 
                 FragmentManager fm;
                 fm = getFragmentManager();
