@@ -37,7 +37,8 @@
         android:id="@+id/name"
         android:layout_gravity="center_horizontal|top"
         android:layout_below="@+id/screenNumber"
-        android:layout_alignStart="@+id/screenNumber" />
+        android:layout_alignStart="@+id/screenNumber"
+        android:text="Username" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -75,7 +76,8 @@
         android:id="@+id/question"
         android:layout_gravity="center_horizontal|top"
         android:layout_alignBottom="@+id/textView4"
-        android:layout_alignStart="@+id/name" />
+        android:layout_alignStart="@+id/name"
+        android:text="Favorite day?" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -85,7 +87,8 @@
         android:layout_alignLeft="@+id/question"
         android:layout_alignStart="@+id/question"
         android:layout_alignRight="@+id/question"
-        android:layout_alignEnd="@+id/question" />
+        android:layout_alignEnd="@+id/question"
+        android:text="Saturday" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -95,7 +98,8 @@
         android:layout_alignLeft="@+id/editTextAlt1"
         android:layout_alignStart="@+id/editTextAlt1"
         android:layout_alignRight="@+id/editTextAlt1"
-        android:layout_alignEnd="@+id/editTextAlt1" />
+        android:layout_alignEnd="@+id/editTextAlt1"
+        android:text="Friday" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -105,7 +109,8 @@
         android:layout_alignLeft="@+id/editTextAlt2"
         android:layout_alignStart="@+id/editTextAlt2"
         android:layout_alignRight="@+id/editTextAlt2"
-        android:layout_alignEnd="@+id/editTextAlt2" />
+        android:layout_alignEnd="@+id/editTextAlt2"
+        android:text="Wensday" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -115,7 +120,8 @@
         android:layout_alignLeft="@+id/editTextAlt3"
         android:layout_alignStart="@+id/editTextAlt3"
         android:layout_alignRight="@+id/editTextAlt3"
-        android:layout_alignEnd="@+id/editTextAlt3" />
+        android:layout_alignEnd="@+id/editTextAlt3"
+        android:text="Monday" />
 
     <TextView
         android:layout_width="wrap_content"
