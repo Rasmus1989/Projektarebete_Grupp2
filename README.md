@@ -6,4 +6,4 @@ The android app can be found here:
 https://github.com/Bankmongot/Pfi3_Projektarbete_Grupp2_Android
 
 The desktop app can be found here:  
-https://github.com/Bankmongot/Pfi3_Projektarbete_Grupp2_Desktop/tree/master/ScreenSwing
+https://github.com/Bankmongot/Pfi3_Projektarbete_Grupp2_Desktop
