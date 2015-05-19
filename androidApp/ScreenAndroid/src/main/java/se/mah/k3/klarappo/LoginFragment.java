@@ -24,8 +24,8 @@ import java.util.Map;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class LoginFragment extends Fragment implements ValueEventListener
-{
+
+public class LoginFragment extends Fragment implements ValueEventListener {
 
 
 
@@ -115,6 +115,8 @@ public class LoginFragment extends Fragment implements ValueEventListener
         Constants.checkmyFirebaseRef().child(Constants.userName).child("Vote2").setValue(0);
         Constants.checkmyFirebaseRef().child(Constants.userName).child("Vote3").setValue(0);
         Constants.checkmyFirebaseRef().child(Constants.userName).child("Vote4").setValue(0);
+
+        Constants.checkmyFirebaseRef().child(Constants.userName).child("Theme").setValue("asdf");
     }
 
 
